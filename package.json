@@ -4,7 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "cd frontend && npm run dev",
-    "build": "cd frontend && npm install && npm run build",
-    "start": "cd frontend && npm run start"
+    "build": "cd frontend && npm ci && npm run build",
+    "start": "cd frontend && npm run start",
+    "vercel-build": "cd frontend && npm ci && npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
