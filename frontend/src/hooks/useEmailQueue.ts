@@ -72,7 +72,7 @@ export const useEmailQueue = (filters: QueueFilters): UseEmailQueueReturn => {
           table: 'emails',
           filter: 'isRead=eq.false'
         },
-        (payload) => {
+        (payload: any) => {
           console.log('Email queue update:', payload)
           // Refetch emails when changes occur
           fetchEmails()

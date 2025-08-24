@@ -63,7 +63,7 @@ export const useEmails = (filters?: {
           schema: 'public',
           table: 'emails'
         },
-        (payload) => {
+        (payload: any) => {
           if (payload.eventType === 'INSERT') {
             setEmails(prev => [payload.new as EmailRow, ...prev])
           } else if (payload.eventType === 'UPDATE') {
@@ -147,7 +147,7 @@ export const useSessions = (filters?: {
           schema: 'public',
           table: 'sessions'
         },
-        (payload) => {
+        (payload: any) => {
           if (payload.eventType === 'INSERT') {
             setSessions(prev => [...prev, payload.new as SessionRow].sort(
               (a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
@@ -229,7 +229,7 @@ export const useFamilies = (filters?: {
           schema: 'public',
           table: 'families'
         },
-        (payload) => {
+        (payload: any) => {
           if (payload.eventType === 'INSERT') {
             setFamilies(prev => [...prev, payload.new as FamilyRow].sort(
               (a, b) => a.family_name.localeCompare(b.family_name)
@@ -297,7 +297,7 @@ export const useDashboardStats = () => {
         .select('is_processed, created_at')
         .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
 
-      const processed = recentEmails?.filter(e => e.is_processed).length || 0
+      const processed = recentEmails?.filter((e: any) => e.is_processed).length || 0
       const total = recentEmails?.length || 0
       const processingRate = total > 0 ? Math.round((processed / total) * 100) : 100
 
